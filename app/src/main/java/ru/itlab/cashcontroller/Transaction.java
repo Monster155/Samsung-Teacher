@@ -5,22 +5,22 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class User {
+public class Transaction {
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
-    @ColumnInfo(name = "first_name")
-    public String firstName;
+    @ColumnInfo(name = "date")
+    public long date;
 
-    @ColumnInfo(name = "last_name")
-    public String lastName;
+    @ColumnInfo(name = "value")
+    public int value;
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Transaction{" +
                 "uid=" + uid +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", date=" + date +
+                ", value=" + value +
                 '}';
     }
 }

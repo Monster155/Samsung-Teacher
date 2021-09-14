@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.room.Room;
 
+import java.util.List;
+
 public class MainActivity extends Activity {
 
     private static final String TAG = "Log";
@@ -45,36 +47,38 @@ public class MainActivity extends Activity {
                 AppDatabase.class, "Finance").build();
         UserDao userDao = db.userDao();
 
-        DataBaseThread dataBaseThread = new DataBaseThread(userDao);
-        dataBaseThread.start();
+        Insert(userDao);
+        Show(userDao);
+    }
 
-        /*
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://finances-142e2-default-rtdb.firebaseio.com/");
-        DatabaseReference myRef = database.getReference("UserData");
-
-        Gson gson = new Gson();
-
-        myRef.child(new Date(System.currentTimeMillis()).toString()).setValue(100);
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+    private void Insert(UserDao userDao) {
+        new Thread() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-                UserData userData = gson.fromJson(value, UserData.class);
-                Log.d(TAG, "onDataChange: " + userData);
-            }
+            public void run() {
+                Transaction t1 = new Transaction();
+                t1.date = System.currentTimeMillis();
+                t1.value = 100;
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                userDao.insertAll(t1);
             }
-        });
-        */
+        }.start();
+    }
+
+    private void Show(UserDao userDao) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                List<Transaction> tr = userDao.getAll();
+                System.out.println("Transactions: ");
+                for (Transaction t : tr) {
+                    System.out.println(t);
+                }
+            }
+        }.start();
     }
 }

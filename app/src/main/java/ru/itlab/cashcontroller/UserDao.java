@@ -10,19 +10,19 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-    @Query("SELECT * FROM user")
-    List<User> getAll();
+    @Query("SELECT * FROM `Transaction`")
+    List<Transaction> getAll();
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    List<User> loadAllByIds(int[] userIds);
+    @Query("SELECT * FROM `Transaction` WHERE uid IN (:userIds)")
+    List<Transaction> loadAllByIds(int[] userIds);
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    User findByName(String first, String last);
+    @Query("SELECT * FROM `Transaction` WHERE date LIKE :date AND " +
+            "value LIKE :value LIMIT 1")
+    Transaction findByName(long date, int value);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(User... users);
+    void insertAll(Transaction... transactions);
 
     @Delete
-    void delete(User user);
+    void delete(Transaction transaction);
 }
