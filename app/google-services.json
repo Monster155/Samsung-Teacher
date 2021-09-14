@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995219002314",
+    "project_id": "finances-142e2",
+    "storage_bucket": "finances-142e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995219002314:android:0e0904c0204e323b1e7533",
+        "android_client_info": {
+          "package_name": "ru.itlab.cashcontroller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995219002314-kqaoo4mk19lmnolg2abrpeabvm4eu31u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZWyUp6UPimH9vc3QrCgqFJz8x1RPPUzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995219002314-kqaoo4mk19lmnolg2abrpeabvm4eu31u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
