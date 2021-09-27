@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/targetTextIcon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"
@@ -27,22 +27,55 @@
         android:paddingLeft="10dp">
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/targetName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Цель 1" />
 
-        <TextView
-            android:id="@+id/textView18"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Цель: 500 ₽" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView19"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Цель: " />
+
+            <TextView
+                android:id="@+id/targetMaxText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" ₽" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Накопили: 200 ₽" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Накопили: " />
+
+            <TextView
+                android:id="@+id/targetNowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" ₽" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

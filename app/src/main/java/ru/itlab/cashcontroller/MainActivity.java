@@ -1,17 +1,18 @@
 package ru.itlab.cashcontroller;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         long time = TimeZone.getDefault().getOffset(now);
         long todayDayStartTime = now - now % dayInMillis - time;
 
-        LinearLayout targetContainer = findViewById(R.id.targetContainer);
+//        LinearLayout targetContainer = findViewById(R.id.targetContainer);
 
         TextView monthPlus = findViewById(R.id.monthPlus);
         cashDao.getMonthPlus(todayDayStartTime - monthInMillis, todayDayStartTime).observe(this, total -> monthPlus.setText(total == null ? "0" : String.valueOf(total)));
@@ -57,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.sum7),
         };
 
-        LayoutInflater inflater = getLayoutInflater();
-        View childLayout = inflater.inflate(R.layout.target, null, false);
-        View childLayout2 = inflater.inflate(R.layout.target, null, false);
-        targetContainer.addView(childLayout);
-        targetContainer.addView(childLayout2);
+//        LayoutInflater inflater = getLayoutInflater();
+//        View childLayout = inflater.inflate(R.layout.target, null, false);
+//        View childLayout2 = inflater.inflate(R.layout.target, null, false);
+//        targetContainer.addView(childLayout);
+//        targetContainer.addView(childLayout2);
 
         for (int i = 0; i < weekSums.length; i++) {
             int index = i;
@@ -72,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.addChange).setOnClickListener(view -> findViewById(R.id.changeWindow).setVisibility(View.VISIBLE));
-        findViewById(R.id.exitButton).setOnClickListener(view -> findViewById(R.id.changeWindow).setVisibility(View.GONE));
+        findViewById(R.id.changeExitButton).setOnClickListener(view -> findViewById(R.id.changeWindow).setVisibility(View.GONE));
+
+        findViewById(R.id.addNewTargetBtn).setOnClickListener(view -> findViewById(R.id.newTargetWindow).setVisibility(View.VISIBLE));
+        findViewById(R.id.newTargetExitButton).setOnClickListener(view -> findViewById(R.id.newTargetWindow).setVisibility(View.GONE));
 
 //        findViewById(R.id.changePlus).setOnClickListener(view -> findViewById(R.id.changeMinus).);
         findViewById(R.id.changeAdd).setOnClickListener(view -> {
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             calendar.set(year, month, day);
 
-            int value = Integer.parseInt(((EditText) findViewById(R.id.changeValue)).getText().toString());
+            int value = Integer.parseInt(((EditText) findViewById(R.id.value)).getText().toString());
 
             if (((Switch) findViewById(R.id.changeSwitch)).isChecked()) {
                 if (value > 0) {
@@ -99,6 +103,54 @@ public class MainActivity extends AppCompatActivity {
             InsertDataFromChangeWindow(cashDao, calendar.getTimeInMillis(), value);
 
             findViewById(R.id.changeWindow).setVisibility(View.GONE);
+        });
+
+
+        // Construct the data source
+        ArrayList<Target> arrayOfUsers = new ArrayList<>();
+        // Create the adapter to convert the array to views
+        TargetAdapter adapter = new TargetAdapter(this, arrayOfUsers);
+        // Attach the adapter to a ListView
+        ListView lastDayBillsLV = findViewById(R.id.lastDayBills);
+        lastDayBillsLV.setAdapter(adapter);
+
+        TargetDatabase tdb = Room.databaseBuilder(getApplicationContext(),
+                TargetDatabase.class, "Targets").build();
+        TargetDao targetDao = tdb.targetDao();
+        targetDao.getAllOpen().observe(this, targetList -> {
+            adapter.clear();
+            adapter.addAll(targetList);
+        });
+
+
+        findViewById(R.id.targetAdd).setOnClickListener(view -> {
+            int max = Integer.parseInt(((EditText) findViewById(R.id.targetMax)).getText().toString());
+
+            int selectedId = ((RadioGroup) findViewById(R.id.radio)).getCheckedRadioButtonId();
+            String iconText = "$";
+            switch (selectedId) {
+                case R.id.radioButton:
+                    iconText = "\uD83C\uDFD6";
+                    break;
+                case R.id.radioButton2:
+                    iconText = "\uD83D\uDE97";
+                    break;
+                case R.id.radioButton3:
+                    iconText = "\uD83C\uDFE0";
+                    break;
+                case R.id.radioButton4:
+                    iconText = "⭐";
+                    break;
+            }
+
+            Target target = new Target(System.currentTimeMillis(),
+                    iconText,
+                    ((EditText) findViewById(R.id.newTargetName)).getText().toString(),
+                    max, 0);
+
+            InsertDataFromNewTargetWindow(targetDao, target);
+
+            findViewById(R.id.newTargetWindow).setVisibility(View.GONE);
         });
     }
 
@@ -115,6 +167,16 @@ public class MainActivity extends AppCompatActivity {
 
                 // insert
                 cashDao.insertAll(cash);
+            }
+        }.start();
+    }
+
+    private void InsertDataFromNewTargetWindow(TargetDao targetDao, Target target) {
+        new Thread() {
+            @Override
+            public void run() {
+                // insert
+                targetDao.insertAll(target);
             }
         }.start();
     }

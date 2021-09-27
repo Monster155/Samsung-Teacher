@@ -21,7 +21,7 @@ public interface CashDao {
             "value LIKE :value LIMIT 1")
     Cash findByName(long date, int value);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAll(Cash... cashes);
 
     @Delete
@@ -30,8 +30,8 @@ public interface CashDao {
     @Query("SELECT uid, date, SUM(value) as value FROM Cash WHERE date BETWEEN :startDate AND :endDate GROUP BY date/(1000*60*60*24) ORDER BY date/(1000*60*60*24) DESC")
     LiveData<List<Cash>> getAllBetweenDatesGroupByDay(long startDate, long endDate);
 
-    @Query("SELECT 0 as uid, :today as date, SUM(value) as value FROM Cash WHERE date BETWEEN :today AND :today+(1000*60*60*24)")
-    LiveData<Cash> getTodaySum(long today);
+    @Query("SELECT 0 as uid, :todayNoon as date, SUM(value) as value FROM Cash WHERE date BETWEEN :todayNoon AND :todayNoon+(1000*60*60*24)")
+    LiveData<Cash> getTodaySum(long todayNoon);
 
     @Query("SELECT SUM(value) FROM `Cash`")
     LiveData<Long> getTotal();
@@ -41,4 +41,7 @@ public interface CashDao {
 
     @Query("SELECT SUM(value) FROM `Cash` WHERE date BETWEEN :monthStart AND :monthEnd AND value < 0")
     LiveData<Long> getMonthMinus(long monthStart, long monthEnd);
+
+    @Query("SELECT * FROM Cash WHERE date BETWEEN :now AND :now-(1000*60*60*24)")
+    LiveData<List<Cash>> getAllForLastDay(long now);
 }
