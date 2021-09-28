@@ -11,8 +11,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class TargetAdapter extends ArrayAdapter<Target> {
-    public TargetAdapter(Context context, ArrayList<Target> users) {
+    private View editTargetWindow;
+    private int currentId;
+
+    public TargetAdapter(Context context, ArrayList<Target> users, View editTargetWindow) {
         super(context, 0, users);
+        this.editTargetWindow = editTargetWindow;
     }
 
     @Override
@@ -22,7 +26,13 @@ public class TargetAdapter extends ArrayAdapter<Target> {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.target, parent, false);
+
+            convertView.setOnClickListener(view -> {
+                editTargetWindow.setVisibility(View.VISIBLE);
+                currentId = target.id;
+            });
         }
+
         // Lookup view for data population
         TextView textIcon = convertView.findViewById(R.id.targetTextIcon);
         TextView name = convertView.findViewById(R.id.targetName);
@@ -37,5 +47,9 @@ public class TargetAdapter extends ArrayAdapter<Target> {
         now.setText(String.valueOf(target.now));
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    public int getCurrentId() {
+        return currentId;
     }
 }

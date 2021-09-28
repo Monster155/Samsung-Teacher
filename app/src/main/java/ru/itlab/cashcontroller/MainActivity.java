@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         // Construct the data source
         ArrayList<Target> arrayOfUsers = new ArrayList<>();
         // Create the adapter to convert the array to views
-        TargetAdapter adapter = new TargetAdapter(this, arrayOfUsers);
+        TargetAdapter adapter = new TargetAdapter(this, arrayOfUsers, findViewById(R.id.editTargetWindow));
         // Attach the adapter to a ListView
         ListView lastDayBillsLV = findViewById(R.id.lastDayBills);
         lastDayBillsLV.setAdapter(adapter);
@@ -122,6 +122,19 @@ public class MainActivity extends AppCompatActivity {
             adapter.addAll(targetList);
         });
 
+
+        findViewById(R.id.editTargetAdd).setOnClickListener(view -> {
+            int changeValue = Integer.parseInt(((EditText) findViewById(R.id.editTargetValue)).getText().toString());
+            UpdateDataFromEditTargetWindow(targetDao, adapter.getCurrentId(), changeValue);
+
+            findViewById(R.id.editTargetWindow).setVisibility(View.GONE);
+        });
+
+        findViewById(R.id.editTargetExitButton).setOnClickListener(view -> findViewById(R.id.editTargetWindow).setVisibility(View.GONE));
+        findViewById(R.id.targetComplete).setOnClickListener(view -> {
+            CloseTarget(targetDao, adapter.getCurrentId());
+            findViewById(R.id.editTargetWindow).setVisibility(View.GONE);
+        });
 
         findViewById(R.id.targetAdd).setOnClickListener(view -> {
             int max = Integer.parseInt(((EditText) findViewById(R.id.targetMax)).getText().toString());
@@ -159,12 +172,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Cash cash = new Cash();
-                // date
+                // set date
                 cash.date = dateInMillis;
-
-                // value
+                // set value
                 cash.value = value;
-
                 // insert
                 cashDao.insertAll(cash);
             }
@@ -175,6 +186,34 @@ public class MainActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
+                // insert
+                targetDao.insertAll(target);
+            }
+        }.start();
+    }
+
+    private void CloseTarget(TargetDao targetDao, int targetId) {
+        new Thread() {
+            @Override
+            public void run() {
+                // get target
+                Target target = targetDao.findById(targetId);
+                // change is_achieved
+                target.isAchieved = true;
+                // insert
+                targetDao.insertAll(target);
+            }
+        }.start();
+    }
+
+    private void UpdateDataFromEditTargetWindow(TargetDao targetDao, int targetId, int changeValue) {
+        new Thread() {
+            @Override
+            public void run() {
+                // get target
+                Target target = targetDao.findById(targetId);
+                // update value
+                target.now += changeValue;
                 // insert
                 targetDao.insertAll(target);
             }

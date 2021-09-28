@@ -21,7 +21,7 @@ public interface CashDao {
             "value LIKE :value LIMIT 1")
     Cash findByName(long date, int value);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Cash... cashes);
 
     @Delete

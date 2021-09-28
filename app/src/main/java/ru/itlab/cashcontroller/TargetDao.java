@@ -13,6 +13,9 @@ public interface TargetDao {
     @Query("SELECT * FROM `Target` WHERE NOT is_achieved")
     LiveData<List<Target>> getAllOpen();
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Target... targets);
+
+    @Query("SELECT * FROM `Target` WHERE id=:id LIMIT 1")
+    Target findById(int id);
 }
