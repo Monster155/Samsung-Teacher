@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:showIn="@layout/activity_main">
+    android:orientation="vertical">
+    <!--    tools:showIn="@layout/activity_main">-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,7 +85,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="0"
+            android:digits="0123456789"
             android:hint="100 ₽"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textSize="20sp" />
 

@@ -1,4 +1,4 @@
-package ru.itlab.cashcontroller;
+package ru.itlab.cashcontroller.listView;
 
 import android.content.Context;
 import android.util.AttributeSet;

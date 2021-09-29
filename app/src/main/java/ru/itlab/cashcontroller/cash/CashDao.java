@@ -1,4 +1,4 @@
-package ru.itlab.cashcontroller;
+package ru.itlab.cashcontroller.cash;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -33,6 +33,7 @@ public interface CashDao {
     @Query("SELECT 0 as uid, :todayNoon as date, SUM(value) as value FROM Cash WHERE date BETWEEN :todayNoon AND :todayNoon+(1000*60*60*24)")
     LiveData<Cash> getTodaySum(long todayNoon);
 
+    //    @Query("SELECT SUM(value) as value FROM `Cash` UNION ALL SELECT SUM(current_value) as value FROM Target")
     @Query("SELECT SUM(value) FROM `Cash`")
     LiveData<Long> getTotal();
 

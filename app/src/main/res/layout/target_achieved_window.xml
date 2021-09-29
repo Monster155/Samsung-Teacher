@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical">
+    <!--    tools:showIn="@layout/activity_main">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/closeExitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Закрыть цель"
+            android:textAlignment="center"
+            android:textSize="48sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Что сделать с бюджетом?"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <RadioGroup
+            android:id="@+id/closeRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/closeRadioButton">
+
+            <RadioButton
+                android:id="@+id/closeRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Вернуть средства на баланс" />
+
+            <RadioButton
+                android:id="@+id/closeRadioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Оставить без изменений" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/closeFinishBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Завершить" />
+</LinearLayout>

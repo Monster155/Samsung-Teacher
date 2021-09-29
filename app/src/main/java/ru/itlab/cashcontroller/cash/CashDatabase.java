@@ -1,14 +1,7 @@
-package ru.itlab.cashcontroller;
-
-import android.content.Context;
+package ru.itlab.cashcontroller.cash;
 
 import androidx.room.Database;
-import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @Database(entities = {Cash.class}, version = 1, exportSchema = false)
 //@TypeConverters({Converters.class})

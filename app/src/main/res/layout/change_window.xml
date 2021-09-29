@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:showIn="@layout/activity_main">
+    android:orientation="vertical">
+    <!--    tools:showIn="@layout/activity_main">-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,13 +38,15 @@
             android:textSize="48sp" />
 
         <EditText
-            android:id="@+id/value"
+            android:id="@+id/changeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="0"
+            android:digits="0123456789"
             android:hint="100 ₽"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textSize="20sp" />
 

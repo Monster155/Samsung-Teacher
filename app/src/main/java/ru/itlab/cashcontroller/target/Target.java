@@ -1,4 +1,4 @@
-package ru.itlab.cashcontroller;
+package ru.itlab.cashcontroller.target;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

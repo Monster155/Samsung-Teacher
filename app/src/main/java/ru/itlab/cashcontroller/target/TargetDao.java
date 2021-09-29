@@ -1,4 +1,4 @@
-package ru.itlab.cashcontroller;
+package ru.itlab.cashcontroller.target;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -18,4 +18,7 @@ public interface TargetDao {
 
     @Query("SELECT * FROM `Target` WHERE id=:id LIMIT 1")
     Target findById(int id);
+
+    @Query("SELECT SUM(current_value) FROM `Target`")
+    LiveData<Long> getTotal();
 }

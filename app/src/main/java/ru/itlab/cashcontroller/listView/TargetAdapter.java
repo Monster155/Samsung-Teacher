@@ -1,6 +1,7 @@
-package ru.itlab.cashcontroller;
+package ru.itlab.cashcontroller.listView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import ru.itlab.cashcontroller.R;
+import ru.itlab.cashcontroller.target.Target;
 
 public class TargetAdapter extends ArrayAdapter<Target> {
     private View editTargetWindow;
@@ -45,6 +49,9 @@ public class TargetAdapter extends ArrayAdapter<Target> {
         name.setText(target.name);
         max.setText(String.valueOf(target.max));
         now.setText(String.valueOf(target.now));
+        if (target.now >= target.max) {
+            convertView.setBackgroundColor(Color.GREEN);
+        }
         // Return the completed view to render on screen
         return convertView;
     }
