@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/target"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
     android:orientation="horizontal"
     android:padding="10dp">
-<!--    tools:showIn="@layout/activity_main">-->
+    <!--    tools:showIn="@layout/activity_main">-->
 
     <TextView
         android:id="@+id/targetTextIcon"
@@ -16,6 +15,7 @@
         android:layout_weight="5"
         android:text="💲"
         android:textAlignment="center"
+        android:textColor="@color/dark_gray"
         android:textSize="48sp" />
 
     <LinearLayout
@@ -30,7 +30,8 @@
             android:id="@+id/targetName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Цель 1" />
+            android:text="Цель 1"
+            android:textColor="@color/dark_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,18 +41,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Цель: " />
+                android:text="Цель: "
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/targetMaxText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="500" />
+                android:text="500"
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" ₽" />
+                android:text=" ₽"
+                android:textColor="@color/dark_gray" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,18 +66,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Накопили: " />
+                android:text="Накопили: "
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/targetNowText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="200" />
+                android:text="200"
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" ₽" />
+                android:text=" ₽"
+                android:textColor="@color/dark_gray" />
         </LinearLayout>
 
     </LinearLayout>

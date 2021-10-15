@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:gravity="center"
     android:orientation="vertical">
-<!--    tools:showIn="@layout/activity_main">-->
+    <!--    tools:showIn="@layout/activity_main">-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +34,7 @@
             android:paddingRight="20dp"
             android:text="Цель"
             android:textAlignment="center"
+            android:textColor="@color/dark_gray"
             android:textSize="48sp" />
 
         <TextView
@@ -43,6 +43,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Пополнить"
+            android:textColor="@color/dark_gray"
             android:textSize="30sp" />
 
         <EditText
@@ -56,6 +57,9 @@
             android:hint="100 ₽"
             android:inputType="number"
             android:minHeight="48dp"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/light_gray"
+            android:backgroundTint="@color/dark_gray"
             android:textSize="20sp">
 
             <requestFocus />

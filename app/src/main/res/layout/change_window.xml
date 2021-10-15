@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
     <!--    tools:showIn="@layout/activity_main">-->
@@ -35,6 +35,7 @@
             android:layout_weight="0"
             android:paddingLeft="20dp"
             android:text="Сумма"
+            android:textColor="@color/dark_gray"
             android:textSize="48sp" />
 
         <EditText
@@ -44,10 +45,13 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="0"
+            android:backgroundTint="@color/dark_gray"
             android:digits="0123456789"
             android:hint="100 ₽"
             android:inputType="number"
             android:minHeight="48dp"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/light_gray"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -62,10 +66,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Доход"
-                android:textAlignment="viewEnd" />
+                android:textAlignment="viewEnd"
+                android:textColor="@color/dark_gray" />
 
             <Switch
                 android:id="@+id/changeSwitch"
+                style="@style/SwitchStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -73,6 +79,7 @@
                 android:showText="false"
                 android:textOff="Доход"
                 android:textOn="Расход"
+                android:theme="@style/SwitchStyle"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
@@ -80,7 +87,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Расход"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textColor="@color/dark_gray" />
         </LinearLayout>
 
         <LinearLayout
@@ -94,15 +102,18 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="Дата: "
+                android:textColor="@color/dark_gray"
                 android:textSize="20sp" />
 
             <DatePicker
                 android:id="@+id/datePicker"
+                style="@style/MyDatePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:calendarViewShown="false"
-                android:datePickerMode="spinner" />
+                android:datePickerMode="spinner"
+                android:theme="@style/MyDatePicker" />
         </LinearLayout>
 
     </LinearLayout>

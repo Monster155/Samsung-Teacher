@@ -60,26 +60,30 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="* " />
+                                    android:text="* "
+                                    android:textColor="@color/dark_gray" />
 
                                 <TextView
                                     android:id="@+id/monthPlus"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="0" />
+                                    android:text="0"
+                                    android:textColor="@color/dark_gray" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text=" ₽" />
+                                    android:text=" ₽"
+                                    android:textColor="@color/dark_gray" />
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="10dp"
-                                android:text="Доход за месяц" />
+                                android:text="Доход за месяц"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -100,26 +104,30 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="* " />
+                                    android:text="* "
+                                    android:textColor="@color/dark_gray" />
 
                                 <TextView
                                     android:id="@+id/monthMinus"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="0" />
+                                    android:text="0"
+                                    android:textColor="@color/dark_gray" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text=" ₽" />
+                                    android:text=" ₽"
+                                    android:textColor="@color/dark_gray" />
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="10dp"
-                                android:text="Расход за месяц" />
+                                android:text="Расход за месяц"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -142,20 +150,23 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Пн." />
+                                android:text="Пн."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -170,21 +181,24 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Вт." />
+                                android:text="Вт."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/textView2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -199,21 +213,24 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Ср." />
+                                android:text="Ср."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/textView3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -228,21 +245,24 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Чт." />
+                                android:text="Чт."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/textView4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -257,21 +277,24 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Пт." />
+                                android:text="Пт."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/textView5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -286,21 +309,24 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Сб." />
+                                android:text="Сб."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -315,21 +341,24 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:paddingLeft="10dp"
-                                android:text="Вс." />
+                                android:text="Вс."
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/sum7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
-                                android:textAlignment="viewEnd" />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/dark_gray" />
 
                             <TextView
                                 android:id="@+id/textView7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="10dp"
-                                android:text=" ₽" />
+                                android:text=" ₽"
+                                android:textColor="@color/dark_gray" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -360,13 +389,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Цели"
+                                android:textColor="@color/dark_gray"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Накопите или отложите средства" />
+                                android:text="Накопите или отложите средства"
+                                android:textColor="@color/dark_gray" />
 
                         </LinearLayout>
 
@@ -417,6 +448,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Остаток"
+                    android:textColor="@color/dark_gray"
                     android:textSize="20sp" />
 
                 <LinearLayout

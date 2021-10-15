@@ -34,6 +34,7 @@
             android:layout_weight="0"
             android:paddingLeft="20dp"
             android:text="Цель"
+            android:textColor="@color/dark_gray"
             android:textSize="48sp" />
 
         <EditText
@@ -42,9 +43,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:backgroundTint="@color/dark_gray"
             android:layout_weight="0"
             android:hint="Название"
             android:minHeight="48dp"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/light_gray"
             android:textSize="20sp" />
 
         <RadioGroup
@@ -84,11 +88,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:backgroundTint="@color/dark_gray"
             android:layout_weight="0"
             android:digits="0123456789"
             android:hint="100 ₽"
             android:inputType="number"
             android:minHeight="48dp"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/light_gray"
             android:textSize="20sp" />
 
     </LinearLayout>
