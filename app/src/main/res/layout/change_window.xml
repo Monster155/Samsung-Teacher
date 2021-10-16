@@ -54,6 +54,18 @@
             android:textColorHint="@color/light_gray"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/changeWindowError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Строка не может быть пустой"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

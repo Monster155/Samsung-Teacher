@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -69,11 +70,13 @@
             android:id="@+id/editTargetError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Нельзя использовать отрицательные значения"
+            android:layout_weight="0"
+            android:text="Строка не может быть пустой"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/design_default_color_error"
             android:textSize="20sp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            tools:visibility="visible" />
 
     </LinearLayout>
 

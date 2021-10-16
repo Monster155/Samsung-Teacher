@@ -53,13 +53,15 @@
                 android:id="@+id/closeRadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вернуть средства на баланс" />
+                android:text="Вернуть средства на баланс"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/closeRadioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Оставить без изменений" />
+                android:text="Оставить без изменений"
+                android:textColor="@color/black" />
         </RadioGroup>
 
     </LinearLayout>

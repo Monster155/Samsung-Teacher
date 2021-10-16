@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -51,6 +52,18 @@
             android:textColorHint="@color/light_gray"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/newTargetErrorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Введите название"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
         <RadioGroup
             android:id="@+id/radio"
             android:layout_width="match_parent"
@@ -61,25 +74,29 @@
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="На отдых" />
+                android:text="На отдых"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="На машину" />
+                android:text="На машину"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="На новый дом" />
+                android:text="На новый дом"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/radioButton4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="На мечту" />
+                android:text="На мечту"
+                android:textColor="@color/black" />
         </RadioGroup>
 
         <EditText
@@ -97,6 +114,18 @@
             android:textColor="@color/dark_gray"
             android:textColorHint="@color/light_gray"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/newTargetError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Строка не может быть пустой"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
     </LinearLayout>
 

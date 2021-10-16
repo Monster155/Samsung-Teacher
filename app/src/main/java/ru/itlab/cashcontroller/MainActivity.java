@@ -48,15 +48,18 @@ public class MainActivity extends AppCompatActivity {
         long weekInMillis = dayInMillis * 7;
         long monthInMillis = dayInMillis * 30;
         long now = System.currentTimeMillis();
-        long time = TimeZone.getDefault().getOffset(now);
-        long todayDayStartTime = now - now % dayInMillis - time;
+        long timeZoneOffset = TimeZone.getDefault().getOffset(now);
+        long todayDayStartTime = now - now % dayInMillis - timeZoneOffset;
+        long currentWeekMondayTime = now - now % weekInMillis - timeZoneOffset - dayInMillis * 3; //weekInMillis * 3 = 1/1/1970 - то четверг, а не понедельник
 
 //        LinearLayout targetContainer = findViewById(R.id.targetContainer);
 
         TextView monthPlus = findViewById(R.id.monthPlus);
-        cashDao.getMonthPlus(todayDayStartTime - monthInMillis, todayDayStartTime).observe(this, total -> monthPlus.setText(total == null ? "0" : String.valueOf(total)));
+        cashDao.getMonthPlus(todayDayStartTime - monthInMillis + dayInMillis, todayDayStartTime + dayInMillis)
+                .observe(this, total -> monthPlus.setText(total == null ? "0" : String.valueOf(total)));
         TextView monthMinus = findViewById(R.id.monthMinus);
-        cashDao.getMonthMinus(todayDayStartTime - monthInMillis, todayDayStartTime).observe(this, total -> monthMinus.setText(total == null ? "0" : String.valueOf(total)));
+        cashDao.getMonthMinus(todayDayStartTime - monthInMillis + dayInMillis, todayDayStartTime + dayInMillis)
+                .observe(this, total -> monthMinus.setText(total == null ? "0" : String.valueOf(total)));
 
         TextView totalLeft = findViewById(R.id.left);
         AtomicLong cashTotal = new AtomicLong(0);
@@ -88,20 +91,35 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < weekSums.length; i++) {
             int index = i;
-            cashDao.getTodaySum(todayDayStartTime - i * dayInMillis).observe(this, cash -> {
+            cashDao.getTodaySum(currentWeekMondayTime + i * dayInMillis).observe(this, cash -> {
                 System.out.println(cash);
                 weekSums[index].setText(cash.value + "");
             });
         }
 
+        findViewById(R.id.changeWindow).setOnSystemUiVisibilityChangeListener(visibility -> {
+            if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+            } else {
+                findViewById(R.id.changeWindowError).setVisibility(View.GONE);
+            }
+        });
+
         findViewById(R.id.addChange).setOnClickListener(view -> {
             ((EditText) findViewById(R.id.changeValue)).setText("");
             findViewById(R.id.changeWindow).setVisibility(View.VISIBLE);
         });
-        findViewById(R.id.changeExitButton).setOnClickListener(view -> findViewById(R.id.changeWindow).setVisibility(View.GONE));
+        findViewById(R.id.changeExitButton).setOnClickListener(view ->
+        {
+            findViewById(R.id.changeWindow).setVisibility(View.GONE);
+            findViewById(R.id.changeWindowError).setVisibility(View.GONE);
+        });
 
         findViewById(R.id.addNewTargetBtn).setOnClickListener(view -> findViewById(R.id.newTargetWindow).setVisibility(View.VISIBLE));
-        findViewById(R.id.newTargetExitButton).setOnClickListener(view -> findViewById(R.id.newTargetWindow).setVisibility(View.GONE));
+        findViewById(R.id.newTargetExitButton).setOnClickListener(view -> {
+            findViewById(R.id.newTargetWindow).setVisibility(View.GONE);
+            findViewById(R.id.newTargetError).setVisibility(View.GONE);
+            findViewById(R.id.newTargetErrorName).setVisibility(View.GONE);
+        });
 
 //        findViewById(R.id.changePlus).setOnClickListener(view -> findViewById(R.id.changeMinus).);
         findViewById(R.id.changeAdd).setOnClickListener(view -> {
@@ -113,7 +131,14 @@ public class MainActivity extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             calendar.set(year, month, day);
 
-            int value = Integer.parseInt(((EditText) findViewById(R.id.changeValue)).getText().toString());
+            EditText editText = findViewById(R.id.changeValue);
+            String valueStr = editText.getText().toString();
+            if (valueStr.equals("")) {
+                findViewById(R.id.changeWindowError).setVisibility(View.VISIBLE);
+                return;
+            }
+            int value = Integer.parseInt(valueStr);
+            editText.setText("");
 
             if (((Switch) findViewById(R.id.changeSwitch)).isChecked()) {
                 if (value > 0) {
@@ -127,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
             InsertDataFromChangeWindow(cashDao, calendar.getTimeInMillis(), value);
 
+            findViewById(R.id.changeWindowError).setVisibility(View.GONE);
             findViewById(R.id.changeWindow).setVisibility(View.GONE);
         });
 
@@ -145,31 +171,39 @@ public class MainActivity extends AppCompatActivity {
             adapter.addAll(targetList);
         });
 
-
         findViewById(R.id.editTargetAdd).setOnClickListener(view -> {
             EditText editTargetValue = findViewById(R.id.editTargetValue);
-            int changeValue = Integer.parseInt(editTargetValue.getText().toString());
-            editTargetValue.setText("");
-            if (changeValue < 0) {
+            String changeValueStr = editTargetValue.getText().toString();
+            if (changeValueStr.equals("")) {
                 findViewById(R.id.editTargetError).setVisibility(View.VISIBLE);
                 return;
             }
+            int changeValue = Integer.parseInt(changeValueStr);
+            editTargetValue.setText("");
 
             UpdateDataFromEditTargetWindow(targetDao, adapter.getCurrentId(), changeValue);
 
             findViewById(R.id.editTargetWindow).setVisibility(View.GONE);
+            findViewById(R.id.editTargetError).setVisibility(View.GONE);
         });
 
-        findViewById(R.id.editTargetExitButton).setOnClickListener(view -> findViewById(R.id.editTargetWindow).setVisibility(View.GONE));
+        findViewById(R.id.editTargetExitButton).setOnClickListener(view -> {
+            findViewById(R.id.editTargetWindow).setVisibility(View.GONE);
+            findViewById(R.id.editTargetError).setVisibility(View.GONE);
+        });
         findViewById(R.id.targetComplete).setOnClickListener(view -> {
             findViewById(R.id.editTargetWindow).setVisibility(View.GONE);
+            findViewById(R.id.editTargetError).setVisibility(View.GONE);
             findViewById(R.id.targetAchievedWindow).setVisibility(View.VISIBLE);
         });
 
         findViewById(R.id.targetAdd).setOnClickListener(view -> {
             EditText targetMax = findViewById(R.id.targetMax);
+            if (targetMax.getText().toString().equals("")) {
+                findViewById(R.id.newTargetError).setVisibility(View.VISIBLE);
+                return;
+            }
             int max = Integer.parseInt(targetMax.getText().toString());
-            targetMax.setText("");
 
             int selectedId = ((RadioGroup) findViewById(R.id.radio)).getCheckedRadioButtonId();
             String iconText = "$";
@@ -188,14 +222,24 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
 
+            EditText nameET = findViewById(R.id.newTargetName);
+            String name = nameET.getText().toString();
+            if (name.equals("")) {
+                findViewById(R.id.newTargetErrorName).setVisibility(View.VISIBLE);
+                return;
+            }
             Target target = new Target(System.currentTimeMillis(),
                     iconText,
-                    ((EditText) findViewById(R.id.newTargetName)).getText().toString(),
+                    name,
                     max, 0);
 
             InsertDataFromNewTargetWindow(targetDao, target);
 
+            targetMax.setText("");
+            nameET.setText("");
             findViewById(R.id.newTargetWindow).setVisibility(View.GONE);
+            findViewById(R.id.newTargetError).setVisibility(View.GONE);
+            findViewById(R.id.newTargetErrorName).setVisibility(View.GONE);
         });
 
         findViewById(R.id.closeExitButton).setOnClickListener(view -> findViewById(R.id.targetAchievedWindow).setVisibility(View.GONE));
