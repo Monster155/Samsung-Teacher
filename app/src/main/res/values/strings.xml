@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CashController</string>
+    <string name="balance">Остаток</string>
+    <string name="ruble_symbol">₽</string>
+    <string name="last_month_title">Статистика за последний месяц</string>
+    <string name="last_week_title">Статистика за последнюю неделю</string>
+    <string name="last_day_title">Статистика за сутки</string>
+    <string name="income">Доход</string>
+    <string name="outgo">Расход</string>
+    <string name="target">Цели</string>
+    <string name="targets_info">Накопите или отложите средства</string>
+    <string name="dollar_symbol">$</string>
+    <string name="euro_symbol">€</string>
+    <string name="none">none</string>
+    <string name="week_1">Пн.</string>
+    <string name="week_2">Вт.</string>
+    <string name="week_3">Ср.</string>
+    <string name="week_4">Чт.</string>
+    <string name="week_5">Пт.</string>
+    <string name="week_6">Сб.</string>
+    <string name="week_7">Вс.</string>
+
+    <string name="change_total">Добавить операцию</string>
+    <string name="sum">Сумма</string>
+    <string name="date">Дата</string>
+    <string name="add_button">Добавить</string>
+
+    <string name="add_target">Создать Цель</string>
+    <string name="name">Название</string>
+    <string name="create_button">Создать</string>
+
+    <string name="total">Общая сумма</string>
+    <string name="now">Текущая сумма</string>
+    <string name="remove">Закрыть цель</string>
+
+    <string name="empty_text_error">Строка не может быть пустой!</string>
+</resources>
